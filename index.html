@@ -81,7 +81,6 @@ p{margin:0 0 18px}
 .block{width:calc(100% - clamp(28px,4vw,56px));margin:0 auto;border-radius:clamp(20px,2.6vw,34px);overflow:hidden}
 .photoband{position:relative;min-height:clamp(300px,46vw,540px);background-size:cover}
 .photoband .cap{position:absolute;left:0;right:0;bottom:0;padding:clamp(34px,5vw,56px) clamp(20px,3vw,34px) clamp(20px,3vw,30px);background:linear-gradient(180deg,transparent,rgba(7,7,7,.84));color:#fff;font-size:14px;font-weight:600}
-.pb-team{background-image:url('./photos/lacare-enrollment.jpg');background-position:center 62%}
 /* Video band. Same shell as a photo band, with the poster behind the video so
    there is never an empty rectangle while the file loads, and so the still
    frame is what shows if the video is held back for reduced motion. */
@@ -360,6 +359,12 @@ footer a{color:var(--hmc-accent)}
         <a class="hmc-btn hmc-btn-secondary" data-hmc-label="Ask us to come out" href="#request">Ask us to come out</a>
       </div>
     </div>
+    <!-- Sits here rather than in a full-bleed band: a band crops to fill, which cut
+         the tops of heads. A figure keeps the frame the photographer shot. -->
+    <figure class="carefig" data-reveal style="margin-top:clamp(30px,4vw,52px)">
+      <img src="./photos/lacare-enrollment.jpg" alt="Two Health Matters Clinic team members and an L.A. Care representative standing behind an enrollment table set up outside the entrance of an apartment community" loading="lazy">
+      <figcaption>A partner organization hosted this one inside an apartment community, so residents came downstairs instead of across town. Enrollment and Medi-Cal recertification help, delivered with L.A. Care and Covered California. Teams walked to nearby parks, and the same support ran virtually.</figcaption>
+    </figure>
   </div>
 </section>
 
@@ -402,8 +407,22 @@ footer a{color:var(--hmc-accent)}
   </div>
 </section>
 
-<div class="block photoband pb-team">
-  <p class="cap">Enrollment and Medi-Cal recertification help, delivered with L.A. Care and Covered California. A partner organization hosted it inside an apartment community, so residents came downstairs instead of across town. Teams walked to nearby parks, and the same support ran virtually.</p>
+<div class="block photoband videoband">
+  <video src="./video/deployment-loop.mp4" width="960" height="540" autoplay muted loop playsinline preload="metadata" poster="./video/deployment-loop-poster.jpg" aria-label="Silent looping footage of a Health Matters Clinic outdoor deployment, showing the tents, the giveaway line, an outreach worker handing materials to a family, and a bounce house"></video>
+  <script>
+  /* Reduced motion holds the still frame instead. The CSS hides the video and
+     leaves the poster showing as the band's background, and this stops the
+     autoplay attribute from starting the file in the first place. It runs at
+     parse time, before the browser has enough data buffered to begin. */
+  (function(){
+    if (!window.matchMedia || !window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var v = document.currentScript.previousElementSibling;
+    if (!v || v.tagName !== 'VIDEO') return;
+    v.removeAttribute('autoplay');
+    v.addEventListener('play', function(){ v.pause(); });
+    v.pause();
+  })();
+  </script>
 </div>
 
 <!-- ===================== WHAT DRAWS PEOPLE ===================== -->
@@ -454,28 +473,8 @@ footer a{color:var(--hmc-accent)}
 <!-- ===================== DEPLOYMENT FOOTAGE ===================== -->
 <!-- Sits directly under the giveaway table argument because it shows the thing
      that section describes: the line, the tents, and the family activity. -->
-<div class="block photoband videoband">
-  <video src="./video/deployment-loop.mp4" width="960" height="540" autoplay muted loop playsinline preload="metadata" poster="./video/deployment-loop-poster.jpg" aria-label="Silent looping footage of a Health Matters Clinic outdoor deployment, showing the tents, the giveaway line, an outreach worker handing materials to a family, and a bounce house"></video>
-  <script>
-  /* Reduced motion holds the still frame instead. The CSS hides the video and
-     leaves the poster showing as the band's background, and this stops the
-     autoplay attribute from starting the file in the first place. It runs at
-     parse time, before the browser has enough data buffered to begin. */
-  (function(){
-    if (!window.matchMedia || !window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    var v = document.currentScript.previousElementSibling;
-    if (!v || v.tagName !== 'VIDEO') return;
-    v.removeAttribute('autoplay');
-    v.addEventListener('play', function(){ v.pause(); });
-    v.pause();
-  })();
-  </script>
-</div>
-
 <!-- ===================== WHAT A DEPLOYMENT INCLUDES ===================== -->
-<!-- padding-top was 0 to sit flush under a preceding section. A full-bleed video
-     band now sits directly above it, so it needs real clearance instead. -->
-<section style="padding-top:clamp(40px,5vw,72px)" id="deployment">
+<section style="padding-top:0" id="deployment">
   <div class="wrap">
     <div class="split" data-reveal>
       <div class="pic" role="img" aria-label="Blood pressure screening in progress at an outdoor Health Matters Clinic pop-up"></div>

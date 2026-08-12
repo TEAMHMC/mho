@@ -87,6 +87,20 @@ p{margin:0 0 18px}
 .videoband{background-image:url('./video/deployment-loop-poster.jpg');background-position:center 50%}
 .videoband video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 @media (prefers-reduced-motion:reduce){.videoband video{display:none}}
+/* Sound control. Sits top right so it never collides with a band caption. */
+.vb-sound{position:absolute;top:clamp(14px,2vw,22px);right:clamp(14px,2vw,22px);z-index:2;display:inline-flex;align-items:center;gap:9px;padding:9px 16px 9px 13px;border:1px solid rgba(255,255,255,.5);border-radius:100px;background:rgba(7,7,7,.55);color:#fff;font:600 12px/1 'Inter',sans-serif;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;backdrop-filter:blur(6px);transition:background .2s ease,border-color .2s ease}
+.vb-sound:hover{background:rgba(7,7,7,.78);border-color:#fff}
+.vb-sound:focus-visible{outline:2px solid var(--hmc-accent);outline-offset:3px}
+.vb-sound-icon{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.55);flex-shrink:0}
+.vb-sound.is-on{background:var(--hmc-primary);border-color:var(--hmc-primary)}
+.vb-sound.is-on .vb-sound-icon{background:var(--hmc-accent)}
+
+/* Continuous marquee. The row was static before, so the second half of the
+   phrase sat cut off at the right edge with nothing moving it. The span set is
+   duplicated in the markup, so translating by half the row loops seamlessly. */
+@keyframes hmcMarquee{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
+.kinetic-wrap .hmc-kinetic-row{animation:hmcMarquee 30s linear infinite;will-change:transform}
+@media (prefers-reduced-motion:reduce){.kinetic-wrap .hmc-kinetic-row{animation:none}}
 
 .carefig{border:1px solid var(--hmc-text);border-radius:26px;overflow:hidden;background:#fff;margin:0}
 .carefig img{width:100%;height:auto;display:block}
@@ -410,19 +424,42 @@ footer a{color:var(--hmc-accent)}
 </section>
 
 <div class="block photoband videoband">
-  <video src="./video/deployment-loop.mp4" width="960" height="540" autoplay muted loop playsinline preload="metadata" poster="./video/deployment-loop-poster.jpg" aria-label="Silent looping footage of a Health Matters Clinic outdoor deployment, showing the tents, the giveaway line, an outreach worker handing materials to a family, and a bounce house"></video>
+  <video id="deployment-video" src="./video/deployment-loop.mp4" width="960" height="540" autoplay muted loop playsinline preload="metadata" poster="./video/deployment-loop-poster.jpg" aria-label="Looping footage of a Health Matters Clinic outdoor deployment, showing the tents, the giveaway line, an outreach worker handing materials to a family, and a bounce house"></video>
+  <!-- Autoplay is only permitted while muted, so the file carries an audio track
+       the viewer can switch on. The control is rendered by script because a
+       button that cannot work without JavaScript should not appear at all. -->
+  <button type="button" id="deployment-sound" class="vb-sound" hidden aria-pressed="false">
+    <span class="vb-sound-icon" aria-hidden="true"></span><span class="vb-sound-text">Sound off</span>
+  </button>
   <script>
-  /* Reduced motion holds the still frame instead. The CSS hides the video and
-     leaves the poster showing as the band's background, and this stops the
-     autoplay attribute from starting the file in the first place. It runs at
-     parse time, before the browser has enough data buffered to begin. */
   (function(){
-    if (!window.matchMedia || !window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    var v = document.currentScript.previousElementSibling;
-    if (!v || v.tagName !== 'VIDEO') return;
-    v.removeAttribute('autoplay');
-    v.addEventListener('play', function(){ v.pause(); });
-    v.pause();
+    var v = document.getElementById('deployment-video');
+    var btn = document.getElementById('deployment-sound');
+    if (!v || !btn) return;
+    var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* Reduced motion holds the still frame instead. The CSS hides the video and
+       leaves the poster showing as the band's background, and this stops the
+       autoplay attribute from starting the file in the first place. It runs at
+       parse time, before the browser has enough data buffered to begin. */
+    if (reduced) {
+      v.removeAttribute('autoplay');
+      v.addEventListener('play', function(){ v.pause(); });
+      v.pause();
+      return;
+    }
+
+    btn.hidden = false;
+    var label = btn.querySelector('.vb-sound-text');
+    btn.addEventListener('click', function(){
+      v.muted = !v.muted;
+      btn.setAttribute('aria-pressed', String(!v.muted));
+      btn.classList.toggle('is-on', !v.muted);
+      label.textContent = v.muted ? 'Sound off' : 'Sound on';
+      /* Unmuting counts as a user gesture, so this is the one moment a paused
+         autoplay can be started. Ignore the rejection if the browser refuses. */
+      if (!v.muted && v.paused) { var p = v.play(); if (p && p.catch) p.catch(function(){}); }
+    });
   })();
   </script>
 </div>
@@ -434,9 +471,9 @@ footer a{color:var(--hmc-accent)}
       <div data-reveal>
         <p class="eyebrow">How that shapes deployment</p>
         <h2>People come for the giveaway table.</h2>
-        <p class="lede">Free items, food, and something for the children outranked free health screenings in why people showed up. We would rather work with that than pretend otherwise.</p>
-        <p>Read it as operating instructions. A health event without giveaways, without food, and without anything for a child to do reaches fewer people, which means fewer blood pressure readings taken and fewer referrals made. The screening tent is not competing with the giveaway table. It is standing next to it, which is the only reason it gets busy.</p>
-        <p>It also explains the shape of a deployment. Families arrive together, so a parent will only sit down for a screening if their children are occupied within sight. Staffing the family activity is a clinical decision, not a nice extra.</p>
+        <p class="lede">Free items, food, and something for the children all outranked free screenings. We plan around that rather than pretend otherwise.</p>
+        <p>Read it as operating instructions. A health event without giveaways, without food, or without anything for a child to do reaches fewer people, and fewer people means fewer blood pressure readings and fewer referrals. The screening tent is not competing with the giveaway table. It is busy because it stands next to it.</p>
+        <p>It also explains the shape of a deployment. Families arrive together, and a parent sits down for a screening only when their children are occupied within sight. Staffing the family activity is a clinical decision, not an extra.</p>
       </div>
       <div class="ranked" data-reveal>
         <h3>Why people attended a community event</h3>

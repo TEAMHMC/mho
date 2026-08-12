@@ -259,7 +259,9 @@ p{margin:0 0 18px}
 .faq-answer a{color:var(--hmc-accent)}
 .foot-brand{display:flex;flex-wrap:wrap;gap:28px;justify-content:space-between;align-items:flex-start;
   margin-top:clamp(40px,6vw,72px);padding-top:32px;border-top:1px solid rgba(255,255,255,.16)}
-.foot-brand h4{font-family:'Questrial',sans-serif;font-size:1.5rem;color:#fff;margin:0 0 10px}
+.foot-logo{display:inline-block;line-height:0;margin:0 0 14px}
+.foot-logo img{display:block;width:56px;height:56px}
+.foot-logo:focus-visible{outline:2px solid var(--hmc-accent);outline-offset:3px}
 .foot-brand p{margin:0;font-size:.92rem;max-width:44ch}
 .foot-cols{display:flex;flex-wrap:wrap;gap:clamp(28px,5vw,64px)}
 .foot-col h6{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5);margin:0 0 12px}
@@ -864,8 +866,8 @@ footer a{color:var(--hmc-accent)}
 
     <div class="foot-brand">
       <div>
-        <h4>Health Matters Clinic</h4>
-        <p>A Los Angeles nonprofit advancing health equity so everyone has the opportunity to live their healthiest life. Founded in 2020, we have served more than 25,000 Angelenos through mobile health outreach, street medicine, wellness events, and mental health programs.</p>
+        <a class="foot-logo" href="https://www.healthmatters.clinic"><img src="./assets/site/hmc-icon-512.png" alt="Health Matters Clinic" width="56" height="56" loading="lazy"></a>
+        <p>A Los Angeles nonprofit advancing health equity so everyone has the opportunity to live their healthiest life. Helping + Healing since 2020.</p>
       </div>
       <div class="foot-cols">
         <div class="foot-col">

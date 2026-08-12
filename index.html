@@ -403,7 +403,7 @@ footer a{color:var(--hmc-accent)}
 </section>
 
 <div class="block photoband pb-team">
-  <p class="cap">Health insurance enrollment and Medi-Cal recertification support, run with L.A. Care and Covered California. Hosted with a partner community organization at an apartment community so residents could walk downstairs to it, with walking outreach to nearby parks and virtual trainings alongside it.</p>
+  <p class="cap">Enrollment and Medi-Cal recertification help, delivered with L.A. Care and Covered California. A partner organization hosted it inside an apartment community, so residents came downstairs instead of across town. Teams walked to nearby parks, and the same support ran virtually.</p>
 </div>
 
 <!-- ===================== WHAT DRAWS PEOPLE ===================== -->
@@ -470,11 +470,12 @@ footer a{color:var(--hmc-accent)}
     v.pause();
   })();
   </script>
-  <p class="cap">Ground level footage from a Mobile Health Outreach deployment: the tents, the line at the giveaway table, an outreach worker handing materials to a family, and the bounce house that keeps children busy while a parent sits down. Silent, with no audio track.</p>
 </div>
 
 <!-- ===================== WHAT A DEPLOYMENT INCLUDES ===================== -->
-<section style="padding-top:0" id="deployment">
+<!-- padding-top was 0 to sit flush under a preceding section. A full-bleed video
+     band now sits directly above it, so it needs real clearance instead. -->
+<section style="padding-top:clamp(40px,5vw,72px)" id="deployment">
   <div class="wrap">
     <div class="split" data-reveal>
       <div class="pic" role="img" aria-label="Blood pressure screening in progress at an outdoor Health Matters Clinic pop-up"></div>

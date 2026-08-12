@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,700;1,800;1,900&family=Questrial&family=Lato:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./assets/css/hmc-parallax.css">
-<link rel="stylesheet" href="./assets/site/hmc-buttons-1.0.3.css">
+<link rel="stylesheet" href="./assets/site/hmc-buttons-1.0.4.css">
 
 <style>
 :root{
@@ -82,10 +82,28 @@ p{margin:0 0 18px}
 .photoband{position:relative;min-height:clamp(300px,46vw,540px);background-size:cover}
 .photoband .cap{position:absolute;left:0;right:0;bottom:0;padding:clamp(34px,5vw,56px) clamp(20px,3vw,34px) clamp(20px,3vw,30px);background:linear-gradient(180deg,transparent,rgba(7,7,7,.84));color:#fff;font-size:14px;font-weight:600}
 .pb-team{background-image:url('./photos/lacare-enrollment.jpg');background-position:center 62%}
+/* Video band. Same shell as a photo band, with the poster behind the video so
+   there is never an empty rectangle while the file loads, and so the still
+   frame is what shows if the video is held back for reduced motion. */
+.videoband{background-image:url('./video/deployment-loop-poster.jpg');background-position:center 50%}
+.videoband video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+@media (prefers-reduced-motion:reduce){.videoband video{display:none}}
 
 .carefig{border:1px solid var(--hmc-text);border-radius:26px;overflow:hidden;background:#fff;margin:0}
 .carefig img{width:100%;height:auto;display:block}
 .carefig figcaption{padding:16px 20px;font-size:.88rem;color:var(--hmc-muted);border-top:1px solid var(--hmc-text)}
+
+/* ===================== SITE SELECTION CYCLE ===================== */
+/* An ordered list, because the order is the point: the site is chosen, then the
+   community is asked, then the services are set by the answers. */
+.cycle{list-style:none;counter-reset:cyc;margin:38px 0 0;padding:0;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(14px,1.6vw,20px)}
+.cyc{counter-increment:cyc;background:#fff;border:1px solid var(--hmc-text);border-radius:22px;padding:26px 24px}
+.cyc::before{content:counter(cyc);display:inline-flex;align-items:center;justify-content:center;
+  width:40px;height:40px;border-radius:50%;background:var(--hmc-primary);color:#fff;
+  font-family:'Questrial',sans-serif;font-size:1.2rem;line-height:1;margin-bottom:16px;font-variant-numeric:tabular-nums}
+.cyc h3{font-size:1.12rem;margin-bottom:8px}
+.cyc p{font-size:.95rem;color:var(--hmc-muted);line-height:1.5;margin:0}
 
 /* ===================== FINDINGS ===================== */
 .findings{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(14px,1.6vw,20px)}
@@ -158,6 +176,69 @@ p{margin:0 0 18px}
 .shipbox p{color:rgba(255,255,255,.9);font-size:.94rem;margin:0 0 10px}
 .shipbox .addr{font-size:1.02rem;line-height:1.5;color:#fff}
 
+/* ===================== OPERATING HISTORY ===================== */
+.timeline{list-style:none;margin:44px 0 0;padding:0;display:grid;gap:clamp(14px,1.6vw,20px)}
+.tl-item{background:#fff;border:1px solid var(--hmc-text);border-radius:22px;padding:24px clamp(20px,2.6vw,30px);
+  display:grid;grid-template-columns:minmax(110px,140px) 1fr;gap:clamp(16px,2.6vw,34px);align-items:start}
+.tl-year{font-family:'Questrial',sans-serif;font-size:clamp(30px,3.6vw,44px);line-height:1;letter-spacing:-.02em;
+  color:var(--hmc-primary);font-variant-numeric:tabular-nums}
+.tl-item h3{font-size:1.12rem;margin-bottom:8px}
+.tl-item p{font-size:.95rem;color:var(--hmc-muted);line-height:1.55;margin:0 0 12px}
+.tl-item p:last-child{margin-bottom:0}
+.tl-source{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--hmc-primary)}
+.tl-source::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--hmc-accent);flex-shrink:0}
+.tl-figs{list-style:none;margin:0 0 12px;padding:0;display:flex;flex-wrap:wrap;gap:14px clamp(20px,3vw,40px)}
+.tl-figs b{display:block;font-family:'Questrial',sans-serif;font-size:clamp(22px,2.4vw,30px);line-height:1;
+  color:var(--hmc-text);font-variant-numeric:tabular-nums}
+.tl-figs span{display:block;margin-top:6px;font-size:10px;font-weight:700;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--hmc-muted)}
+@media (max-width:620px){
+  .tl-item{grid-template-columns:1fr;gap:10px}
+}
+
+/* ===================== REQUEST FORM ===================== */
+/* Sits inside the blue .shipbox, so every control is white on blue to hold
+   contrast, and focus is drawn in accent yellow rather than the browser default,
+   which disappears against the panel. */
+.reqform{margin:18px 0 0}
+.reqgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.field{display:flex;flex-direction:column;min-width:0}
+.field.wide{grid-column:1/-1}
+.field label,.reqtypes legend{display:block;font-size:11px;font-weight:700;letter-spacing:.13em;
+  text-transform:uppercase;color:rgba(255,255,255,.86);margin:0 0 7px;padding:0}
+.field .hint{font-size:.82rem;color:rgba(255,255,255,.72);margin:6px 0 0}
+.field input,.field textarea{width:100%;font:inherit;font-size:.97rem;color:var(--hmc-text);background:#fff;
+  border:1px solid var(--hmc-text);border-radius:12px;padding:11px 14px;appearance:none}
+.field textarea{min-height:132px;resize:vertical;line-height:1.5}
+.field input::placeholder,.field textarea::placeholder{color:#6b6675}
+.reqform input:focus-visible,.reqform textarea:focus-visible,.reqform button:focus-visible,
+.reqform a:focus-visible{outline:3px solid var(--hmc-accent);outline-offset:2px}
+.field input[aria-invalid="true"],.field textarea[aria-invalid="true"]{border-color:var(--hmc-secondary);border-width:2px}
+.err{margin:7px 0 0;font-size:.85rem;font-weight:600;color:var(--hmc-accent)}
+.err[hidden]{display:none}
+
+.reqtypes{border:0;margin:0 0 16px;padding:0;min-width:0}
+.reqtype-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px}
+.reqtype{display:flex;align-items:center;gap:11px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.42);
+  border-radius:14px;padding:13px 15px;font-size:.94rem;color:#fff;cursor:pointer;transition:background .2s ease,border-color .2s ease}
+.reqtype:hover{background:rgba(255,255,255,.18)}
+.reqtype input{accent-color:var(--hmc-accent);width:18px;height:18px;flex-shrink:0;margin:0;cursor:pointer}
+.reqtype:has(input:checked){background:#fff;border-color:#fff;color:var(--hmc-text);font-weight:600}
+.reqtype input:focus-visible{outline:3px solid var(--hmc-accent);outline-offset:3px}
+
+.consent{display:flex;align-items:flex-start;gap:11px;margin:18px 0 0;font-size:.9rem;color:rgba(255,255,255,.92);line-height:1.5}
+.consent input{accent-color:var(--hmc-accent);width:18px;height:18px;flex-shrink:0;margin:3px 0 0;cursor:pointer}
+.consent a{color:var(--hmc-accent)}
+.reqfoot{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:20px}
+.reqform button[disabled]{opacity:.62;cursor:progress}
+.formnote{font-size:.85rem;color:rgba(255,255,255,.74);margin:16px 0 0}
+.formnote a{color:var(--hmc-accent)}
+.reqsuccess{background:#fff;color:var(--hmc-text);border-radius:16px;padding:24px;margin-top:18px}
+.reqsuccess h4{font-family:'Questrial',sans-serif;font-size:1.3rem;margin:0 0 10px}
+.reqsuccess p{color:var(--hmc-muted);font-size:.95rem;margin:0 0 10px}
+.reqsuccess p:last-child{margin:0}
+
 /* ===================== FAQ + FOOTER ===================== */
 .sitefoot{background:var(--hmc-text);color:rgba(255,255,255,.72)}
 .foot-inner{padding:clamp(48px,7vw,88px) 0 0}
@@ -217,15 +298,10 @@ footer a{color:var(--hmc-accent)}
       <p class="hero-eyebrow">Mobile Health Outreach</p>
       <h1 class="hero-title">The clinic <em>comes to you.</em></h1>
       <p class="hero-tagline">Free screenings, health education, and referrals set up in parks, at schools, and at neighborhood events across Los Angeles. We asked 169 community members what keeps them from care, and we built the deployment around what they said.</p>
-      <div class="hero-stats">
-        <div class="hstat"><b class="impact-num">169</b><span>People gave us feedback</span></div>
-        <div class="hstat"><b class="impact-num">87</b><span>Named cost as a barrier</span></div>
-        <div class="hstat"><b class="impact-num">133</b><span>Want updates from us</span></div>
-      </div>
       <div class="cta-row">
         <a data-hmc-label="What people told us" class="hmc-btn hmc-btn-primary" href="#feedback">What people told us</a>
-        <a data-hmc-label="Find an event near you" class="hmc-btn hmc-btn-secondary" href="https://eventfinder.healthmatters.clinic">Find an event near you</a>
-        <a data-hmc-label="Volunteer with us" class="hmc-btn hmc-btn-secondary" href="#join">Volunteer with us</a>
+        <a data-hmc-label="Find an event" class="hmc-btn hmc-btn-secondary" href="https://eventfinder.healthmatters.clinic">Find an event</a>
+        <a data-hmc-label="Volunteer" class="hmc-btn hmc-btn-secondary" href="#join">Volunteer</a>
       </div>
     </div>
   </div>
@@ -248,6 +324,41 @@ footer a{color:var(--hmc-accent)}
         <img src="./photos/vitals-pop-up.png" alt="Health Matters Clinic team member fitting a blood pressure cuff on a seated community member at an outdoor pop-up table under a canopy" loading="lazy" width="1024" height="595">
         <figcaption>Blood pressure taken at a neighborhood pop-up. No appointment, no insurance, no identification required.</figcaption>
       </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SITE SELECTION CYCLE ===================== -->
+<!-- Sits ahead of the findings because it explains where those numbers come
+     from: the assessment is a step in planning a site, not a one-off study. -->
+<section id="siting" style="padding-top:0">
+  <div class="wrap">
+    <div class="measure" data-reveal>
+      <p class="eyebrow">How we choose a site</p>
+      <h2>How we decide where to go.</h2>
+      <p class="lede">Two things put a neighborhood on the list: where the need is greatest, and where community members or partner organizations ask us to come. What we set up once we are there is decided by the people who live there.</p>
+    </div>
+    <ol class="cycle">
+      <li class="cyc" data-reveal>
+        <h3>Identify the area</h3>
+        <p>We go to the areas of greatest need, and to the places where community members or partner organizations specifically request us.</p>
+      </li>
+      <li class="cyc" data-reveal>
+        <h3>Ask before we plan</h3>
+        <p>Once a location is identified, we run a community needs assessment there to determine which services are needed most.</p>
+      </li>
+      <li class="cyc" data-reveal>
+        <h3>Deploy what was asked for</h3>
+        <p>The results of that assessment inform and determine which services get deployed at that site.</p>
+      </li>
+    </ol>
+    <div class="measure" data-reveal style="margin-top:clamp(28px,4vw,44px)">
+      <p>The 169 responses below are one instance of step two. Read the findings as the method rather than as a report: every deployment is planned this way, starting from what the people at that site said they needed.</p>
+      <p>Want the assessment run where you live? Take the Community Health Survey, and if you are a neighborhood group or a partner organization, ask us to come out. The request form covers hosting a deployment at your site and partnering with us.</p>
+      <div class="cta-row">
+        <a class="hmc-btn hmc-btn-primary" data-hmc-label="Take the survey for your neighborhood" href="https://www.healthmatters.clinic/survey">Take the survey for your neighborhood</a>
+        <a class="hmc-btn hmc-btn-secondary" data-hmc-label="Ask us to come out" href="#request">Ask us to come out</a>
+      </div>
     </div>
   </div>
 </section>
@@ -292,7 +403,7 @@ footer a{color:var(--hmc-accent)}
 </section>
 
 <div class="block photoband pb-team">
-  <p class="cap">Outreach team on site at a park deployment in Los Angeles. Clinical staff, students, and volunteers set up together.</p>
+  <p class="cap">Health insurance enrollment and Medi-Cal recertification support, run with L.A. Care and Covered California. Hosted with a partner community organization at an apartment community so residents could walk downstairs to it, with walking outreach to nearby parks and virtual trainings alongside it.</p>
 </div>
 
 <!-- ===================== WHAT DRAWS PEOPLE ===================== -->
@@ -339,6 +450,28 @@ footer a{color:var(--hmc-accent)}
     </div>
   </div>
 </section>
+
+<!-- ===================== DEPLOYMENT FOOTAGE ===================== -->
+<!-- Sits directly under the giveaway table argument because it shows the thing
+     that section describes: the line, the tents, and the family activity. -->
+<div class="block photoband videoband">
+  <video src="./video/deployment-loop.mp4" width="960" height="540" autoplay muted loop playsinline preload="metadata" poster="./video/deployment-loop-poster.jpg" aria-label="Silent looping footage of a Health Matters Clinic outdoor deployment, showing the tents, the giveaway line, an outreach worker handing materials to a family, and a bounce house"></video>
+  <script>
+  /* Reduced motion holds the still frame instead. The CSS hides the video and
+     leaves the poster showing as the band's background, and this stops the
+     autoplay attribute from starting the file in the first place. It runs at
+     parse time, before the browser has enough data buffered to begin. */
+  (function(){
+    if (!window.matchMedia || !window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var v = document.currentScript.previousElementSibling;
+    if (!v || v.tagName !== 'VIDEO') return;
+    v.removeAttribute('autoplay');
+    v.addEventListener('play', function(){ v.pause(); });
+    v.pause();
+  })();
+  </script>
+  <p class="cap">Ground level footage from a Mobile Health Outreach deployment: the tents, the line at the giveaway table, an outreach worker handing materials to a family, and the bounce house that keeps children busy while a parent sits down. Silent, with no audio track.</p>
+</div>
 
 <!-- ===================== WHAT A DEPLOYMENT INCLUDES ===================== -->
 <section style="padding-top:0" id="deployment">
@@ -447,6 +580,100 @@ footer a{color:var(--hmc-accent)}
   </div>
 </section>
 
+<!-- ===================== OPERATING HISTORY ===================== -->
+<section id="history">
+  <div class="wrap">
+    <div class="measure" data-reveal>
+      <p class="eyebrow">Operating history</p>
+      <h2>Every year since 2020.</h2>
+      <p class="lede">Health Matters Clinic has delivered community health services without a gap since July 2020, starting with monthly clinics run outdoors through the first year of COVID.</p>
+      <p>The entries that carry the most weight sit on someone else's record as well as ours: Cal OES, the UCLA Institutional Review Board, the Los Angeles County Department of Mental Health, CalMHSA, and L.A. Care. Each year below names what was delivered and who it was delivered with.</p>
+    </div>
+
+    <ol class="timeline">
+      <li class="tl-item" data-reveal>
+        <span class="tl-year">2020</span>
+        <div class="tl-body">
+          <h3>Monthly community clinics, held outdoors</h3>
+          <p>Monthly community clinics from July 2020 onward, run outdoors through the first year of COVID.</p>
+          <p>Each clinic carried a full multidisciplinary service list rather than a single screening: COVID-19 testing, HIV testing, mental health screening, blood pressure, glucose, cholesterol, height, weight and BMI, physical therapy, yoga, breathwork, dermatology, wound care, and food distribution to people experiencing homelessness. Art therapy was added in the autumn.</p>
+        </div>
+      </li>
+
+      <li class="tl-item" data-reveal>
+        <span class="tl-year">2021</span>
+        <div class="tl-body">
+          <h3>County and community partnerships begin</h3>
+          <p>Los Angeles County Housing for Health, the Los Angeles County Department of Public Health, the NAACP, CORE Response, and JWCH Institute.</p>
+          <span class="tl-source">County and community partners</span>
+        </div>
+      </li>
+
+      <li class="tl-item" data-reveal>
+        <span class="tl-year">2022</span>
+        <div class="tl-body">
+          <h3>Into schools, and into county mental health</h3>
+          <p>Expansion to schools and to the Los Angeles County Department of Mental Health.</p>
+          <p>L.A. Care sponsored a community health event in Compton delivering free biometric, dental, and vision screenings, with more than 15 community-based organizations and 40 volunteers participating.</p>
+          <span class="tl-source">L.A. Care and LACDMH</span>
+        </div>
+      </li>
+
+      <li class="tl-item" data-reveal>
+        <span class="tl-year">2023</span>
+        <div class="tl-body">
+          <h3>A full operating year, counted</h3>
+          <ul class="tl-figs">
+            <li><b>41</b><span>Events</span></li>
+            <li><b>104</b><span>Active volunteers</span></li>
+            <li><b>4,488</b><span>Service hours</span></li>
+            <li><b>240</b><span>Free tablets distributed</span></li>
+            <li><b>$60,855</b><span>Sponsorship and in-kind</span></li>
+          </ul>
+          <p>HMC also participated in the Cal OES Regional Disaster Ready Summit for Los Angeles County on September 27, 2023, at the Skirball Cultural Center.</p>
+          <span class="tl-source">Cal OES</span>
+        </div>
+      </li>
+
+      <li class="tl-item" data-reveal>
+        <span class="tl-year">2024</span>
+        <div class="tl-body">
+          <h3>Enrollment support, and HIV self-testing in Skid Row</h3>
+          <p>L.A. Care partnership for health insurance enrollment support.</p>
+          <p>OraQuick HIV self-test distribution in Skid Row from January to August 2024, reaching 115 recipients.</p>
+          <span class="tl-source">L.A. Care</span>
+        </div>
+      </li>
+
+      <li class="tl-item" data-reveal>
+        <span class="tl-year">2025</span>
+        <div class="tl-body">
+          <h3>Wildfire relief, and a community research report</h3>
+          <p>L.A. Wildfire Relief Response on January 18, 2025, delivered as a single effort:</p>
+          <ul class="tl-figs">
+            <li><b>120</b><span>Individuals and families assisted</span></li>
+            <li><b>198</b><span>Volunteers</span></li>
+            <li><b>1,540</b><span>Service hours</span></li>
+            <li><b>36</b><span>Partner organizations</span></li>
+            <li><b>980</b><span>Essential items distributed</span></li>
+          </ul>
+          <p>In February 2025 HMC published "Understanding Healthcare Access and Experiences in Skid Row, Los Angeles", with 75 respondents, certified exempt from IRB review by the UCLA IRB.</p>
+          <span class="tl-source">UCLA IRB</span>
+        </div>
+      </li>
+
+      <li class="tl-item" data-reveal>
+        <span class="tl-year">2026</span>
+        <div class="tl-body">
+          <h3>Named in the CalMHSA Intent to Award</h3>
+          <p>Named in the CalMHSA Intent to Award for the Los Angeles County Department of Mental Health Community Grants, through a competitive RFP.</p>
+          <span class="tl-source">CalMHSA and LACDMH</span>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
 <!-- ===================== GET INVOLVED ===================== -->
 <section id="join">
   <div class="wrap">
@@ -459,13 +686,13 @@ footer a{color:var(--hmc-accent)}
       <div class="icard" data-reveal>
         <span class="tag">Train and deploy</span>
         <h3>Become a volunteer</h3>
-        <p>Every HMC volunteer completes Community Mental Health Worker training, parts one and two, before working with the community. Training and hours are tracked in your volunteer record.</p>
+        <p>Every HMC volunteer completes core volunteer training before working with the community. Training and hours are tracked in your volunteer record.</p>
         <ul>
           <li>Screening support alongside clinical staff</li>
           <li>Health education and navigation roles</li>
           <li>Recurring deployments, not one-off shifts</li>
         </ul>
-        <div><a class="hmc-btn hmc-btn-primary" data-hmc-label="Start volunteer training" href="https://volunteer.healthmatters.clinic">Start volunteer training</a></div>
+        <div><a class="hmc-btn hmc-btn-primary" data-hmc-label="Get started" href="https://volunteer.healthmatters.clinic">Get started</a></div>
       </div>
       <div class="icard pop" data-reveal>
         <span class="tag">Look first</span>
@@ -482,19 +709,92 @@ footer a{color:var(--hmc-accent)}
       <div class="icard" data-reveal>
         <span class="tag">Host a deployment</span>
         <h3>Bring us to your site</h3>
-        <p>Schools, churches, housing sites, and community organizations can request a Mobile Health Outreach deployment. Tell us the neighborhood, the date, and roughly how many people you expect, and we will tell you what we can bring.</p>
-        <div><a class="hmc-btn hmc-btn-secondary" data-hmc-label="Request a deployment" href="mailto:contact@healthmatters.clinic?subject=Mobile%20Health%20Outreach%20deployment%20request">Request a deployment</a></div>
+        <p>Schools, churches, housing sites, and community organizations can request a Mobile Health Outreach deployment, ask us to table at an event you are already running, or start a wider partnership. Tell us the neighborhood, the date, and roughly how many people you expect, and we will tell you what we can bring.</p>
+        <div><a class="hmc-btn hmc-btn-secondary" data-hmc-label="Send a request" href="#request">Send a request</a></div>
       </div>
     </div>
 
+  </div>
+</section>
+
+<!-- ===================== REQUEST FORM ===================== -->
+<!-- Its own section so #request is a real anchor target. The four request types
+     are radios rather than a dropdown: people ask for tabling and partnership at
+     least as often as for a deployment, and a closed select hides that. -->
+<section id="request" style="padding-top:0">
+  <div class="wrap">
     <div class="shipbox" data-reveal>
-      <h3>Where to reach the team</h3>
-      <p>Questions about volunteering, hosting a deployment, or supporting a site come to the same place.</p>
-      <p class="addr">Health Matters Clinic<br>
-      Attention: Mobile Health Outreach<br>
-      1360 S Figueroa St, Suite D390<br>
-      Los Angeles, CA 90015</p>
-      <p style="margin-top:12px"><a href="mailto:contact@healthmatters.clinic" style="color:var(--hmc-accent)">contact@healthmatters.clinic</a> &middot; <a href="tel:+13239904325" style="color:var(--hmc-accent)">(323) 990-4325</a></p>
+      <h3>Tell us what you need</h3>
+      <p>Host a deployment, have us table at something you are already running, or start a wider partnership. We reply to every request.</p>
+
+      <form class="reqform" id="request-form" novalidate>
+        <fieldset class="reqtypes">
+          <legend>What are you asking for</legend>
+          <div class="reqtype-list">
+            <label class="reqtype" for="rt-host"><input type="radio" id="rt-host" name="requestType" value="host_deployment"><span>Host a deployment at our site</span></label>
+            <label class="reqtype" for="rt-table"><input type="radio" id="rt-table" name="requestType" value="table_at_our_event"><span>Have HMC table at our event</span></label>
+            <label class="reqtype" for="rt-partner"><input type="radio" id="rt-partner" name="requestType" value="partner"><span>Partner with us</span></label>
+            <label class="reqtype" for="rt-other"><input type="radio" id="rt-other" name="requestType" value="other"><span>Something else</span></label>
+          </div>
+          <p class="err" id="err-requestType" role="alert" hidden></p>
+        </fieldset>
+
+        <div class="reqgrid">
+          <div class="field">
+            <label for="req-name">Your name</label>
+            <input type="text" id="req-name" name="name" autocomplete="name" aria-describedby="err-name">
+            <p class="err" id="err-name" role="alert" hidden></p>
+          </div>
+          <div class="field">
+            <label for="req-email">Email</label>
+            <input type="email" id="req-email" name="email" autocomplete="email" aria-describedby="err-email">
+            <p class="err" id="err-email" role="alert" hidden></p>
+          </div>
+          <div class="field">
+            <label for="req-org">Organization</label>
+            <input type="text" id="req-org" name="organization" autocomplete="organization" placeholder="Optional">
+          </div>
+          <div class="field">
+            <label for="req-phone">Phone</label>
+            <input type="tel" id="req-phone" name="phone" autocomplete="tel" placeholder="Optional">
+          </div>
+          <div class="field">
+            <label for="req-neighborhood">Neighborhood</label>
+            <input type="text" id="req-neighborhood" name="neighborhood" placeholder="Optional">
+          </div>
+          <div class="field">
+            <label for="req-date">Date or timeframe</label>
+            <input type="text" id="req-date" name="preferredDate" placeholder="Optional. A date, a month, or just soon">
+          </div>
+          <div class="field">
+            <label for="req-attendance">People expected</label>
+            <input type="text" id="req-attendance" name="estimatedAttendance" placeholder="Optional. A rough number is fine">
+          </div>
+          <div class="field wide">
+            <label for="req-message">What do you have in mind</label>
+            <textarea id="req-message" name="message" maxlength="1500" aria-describedby="req-message-hint err-message" placeholder="The site, who you serve, and what you would want us to bring."></textarea>
+            <p class="hint" id="req-message-hint">Up to 1500 characters.</p>
+            <p class="err" id="err-message" role="alert" hidden></p>
+          </div>
+        </div>
+
+        <label class="consent" for="req-consent">
+          <input type="checkbox" id="req-consent" name="consentPrivacy" value="yes" aria-describedby="err-consent">
+          <span>I agree that Health Matters Clinic may use the details above to respond to this request, as described in the <a href="https://www.healthmatters.clinic/privacy-policy" target="_blank" rel="noopener">privacy policy</a>.</span>
+        </label>
+        <p class="err" id="err-consent" role="alert" hidden></p>
+
+        <div class="reqfoot">
+          <button type="submit" class="hmc-btn hmc-btn-secondary" data-hmc-label="Send request">Send request</button>
+          <p class="err" id="err-form" role="alert" hidden style="margin:0"></p>
+        </div>
+      </form>
+
+      <noscript>
+        <p class="formnote">This form needs JavaScript. Email <a href="mailto:partner@healthmatters.clinic">partner@healthmatters.clinic</a> with the neighborhood, the date, and roughly how many people you expect, and we will reply with what we can bring.</p>
+      </noscript>
+
+      <p class="formnote">Prefer to write or call? <a href="mailto:contact@healthmatters.clinic">contact@healthmatters.clinic</a> &middot; <a href="tel:+13239904325">(323) 990-4325</a>. Deployment and partnership questions can also go straight to <a href="mailto:partner@healthmatters.clinic">partner@healthmatters.clinic</a>.</p>
     </div>
   </div>
 </section>
@@ -520,13 +820,15 @@ footer a{color:var(--hmc-accent)}
           <p>Vitals and screening: blood pressure, blood glucose, cholesterol, and oxygen saturation. Health education, with materials in English and Spanish. Referrals and navigation, meaning help working out which free or low-cost service fits and how to actually use it.</p>
         </div></details>
         <details class="faq-item"><summary>Is it really free?</summary><div class="faq-answer">
-          <p>Yes. Every community-facing HMC service is free, with no insurance, referral, or identification required.</p>
+          <p>Yes, free to the public. Every community-facing HMC service is delivered with no insurance, referral, or identification required.</p>
+          <p>Free to attend does not mean free to run. Screening supplies, education materials in two languages, staffing, and the food and family activities that fill a site are paid for by sponsors, grants, and donors. If your organization wants to make a deployment possible, see <a href="https://www.healthmatters.clinic/partners">how to partner with us</a>.</p>
         </div></details>
         <details class="faq-item"><summary>Where will you be next?</summary><div class="faq-answer">
           <p>Upcoming events are listed in the <a href="https://eventfinder.healthmatters.clinic">Event Finder</a>, which is searchable without an account and works on a phone.</p>
         </div></details>
         <details class="faq-item"><summary>Can you come to our site?</summary><div class="faq-answer">
-          <p>Often, yes. Schools, churches, housing sites, and community organizations can request a deployment by emailing <a href="mailto:contact@healthmatters.clinic">contact@healthmatters.clinic</a> with the neighborhood, the date, and an estimate of how many people you expect.</p>
+          <p>Often, yes. Schools, churches, housing sites, and community organizations can <a href="#request">send us a request</a> with the neighborhood, the date, and an estimate of how many people you expect. You can also email <a href="mailto:partner@healthmatters.clinic">partner@healthmatters.clinic</a>.</p>
+          <p>The same form covers tabling at an event you are already running, and partnering with us more generally.</p>
         </div></details>
       </div>
 
@@ -537,7 +839,7 @@ footer a{color:var(--hmc-accent)}
           <p>Clinical tasks are performed only by people licensed to perform them.</p>
         </div></details>
         <details class="faq-item"><summary>What training is required?</summary><div class="faq-answer">
-          <p>Every HMC volunteer completes Community Mental Health Worker training, parts one and two. It covers the clinical side, including taking and recording vitals, and the behavioural side, including de-escalation and trauma-informed engagement, because most of what happens at a table is a conversation before it is a procedure.</p>
+          <p>Every HMC volunteer completes core volunteer training. It covers the clinical side, including taking and recording vitals, and the behavioural side, including de-escalation and trauma-informed engagement, because most of what happens at a table is a conversation before it is a procedure.</p>
           <p>New to HMC? <a href="https://volunteer.healthmatters.clinic/tour">Take the tour</a> first, then start at <a href="https://volunteer.healthmatters.clinic">volunteer.healthmatters.clinic</a>.</p>
         </div></details>
         <details class="faq-item"><summary>Can I do this for school credit or clinical hours?</summary><div class="faq-answer">
@@ -604,7 +906,7 @@ footer a{color:var(--hmc-accent)}
 <script src="./assets/js/vendor/ScrollTrigger.min.js"></script>
 <script src="./assets/js/vendor/lenis.min.js"></script>
 <script src="./assets/js/hmc-immersive.js"></script>
-<script src="./assets/site/hmc-buttons-1.0.3.js"></script>
+<script src="./assets/site/hmc-buttons-1.0.4.js"></script>
 <script>
 /* Ranked bars draw in on scroll. Uses IntersectionObserver so it works whether or
    not the GSAP immersive layer is active (it is disabled inside the Webflow iframe
@@ -622,6 +924,126 @@ footer a{color:var(--hmc-accent)}
     });
   },{threshold:.35});
   bars.forEach(function(b){ io.observe(b); });
+})();
+</script>
+<script>
+/* Outreach request form. Validates in the page, posts JSON to the volunteer
+   portal, and fails to a readable message with an email address rather than a
+   dead end, because the endpoint is not deployed yet. Errors are written next
+   to the field they belong to, never into an alert box. */
+(function(){
+  var ENDPOINT = 'https://volunteer.healthmatters.clinic/api/public/outreach-requests';
+  var FALLBACK = 'We could not send that from the page. Email partner@healthmatters.clinic with the same details and we will pick it up there.';
+  var form = document.getElementById('request-form');
+  if (!form) return;
+
+  var btn = form.querySelector('button[type="submit"]');
+  var formErr = document.getElementById('err-form');
+
+  function showErr(id, msg){
+    var el = document.getElementById(id);
+    if (!el) return;
+    el.textContent = msg;
+    el.hidden = false;
+  }
+  function clearErrs(){
+    form.querySelectorAll('.err').forEach(function(el){ el.hidden = true; el.textContent = ''; });
+    if (formErr) { formErr.hidden = true; formErr.textContent = ''; }
+    form.querySelectorAll('[aria-invalid]').forEach(function(el){ el.removeAttribute('aria-invalid'); });
+  }
+  function mark(el){ if (el) el.setAttribute('aria-invalid','true'); }
+  function val(name){
+    var el = form.elements[name];
+    return el && typeof el.value === 'string' ? el.value.trim() : '';
+  }
+
+  function validate(){
+    var problems = [];
+    var type = form.querySelector('input[name="requestType"]:checked');
+    if (!type) { showErr('err-requestType','Choose one so we know how to route this.'); problems.push(document.getElementById('rt-host')); }
+
+    var name = val('name');
+    if (!name) { showErr('err-name','Please tell us your name.'); mark(form.elements.name); problems.push(form.elements.name); }
+
+    var email = val('email');
+    if (!email) { showErr('err-email','Please add an email so we can reply.'); mark(form.elements.email); problems.push(form.elements.email); }
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { showErr('err-email','That email address does not look complete.'); mark(form.elements.email); problems.push(form.elements.email); }
+
+    var message = val('message');
+    if (!message) { showErr('err-message','Tell us a little about what you have in mind.'); mark(form.elements.message); problems.push(form.elements.message); }
+    else if (message.length > 1500) { showErr('err-message','Please keep this under 1500 characters. Yours is ' + message.length + '.'); mark(form.elements.message); problems.push(form.elements.message); }
+
+    if (!form.elements.consentPrivacy.checked) { showErr('err-consent','We need your agreement before we can store these details.'); problems.push(form.elements.consentPrivacy); }
+
+    return problems;
+  }
+
+  function succeed(requestId){
+    var box = document.createElement('div');
+    box.className = 'reqsuccess';
+    box.setAttribute('role','status');
+    box.setAttribute('tabindex','-1');
+    var h = document.createElement('h4');
+    h.textContent = 'Request received.';
+    var p1 = document.createElement('p');
+    p1.textContent = 'Thank you. Someone from the Mobile Health Outreach team will reply by email, usually within a few working days.';
+    box.appendChild(h);
+    box.appendChild(p1);
+    if (requestId) {
+      var p2 = document.createElement('p');
+      p2.textContent = 'Your reference is ' + requestId + '.';
+      box.appendChild(p2);
+    }
+    form.parentNode.replaceChild(box, form);
+    box.focus();
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    clearErrs();
+    var problems = validate();
+    if (problems.length) { if (problems[0] && problems[0].focus) problems[0].focus(); return; }
+
+    var payload = {
+      requestType: form.querySelector('input[name="requestType"]:checked').value,
+      name: val('name'),
+      email: val('email'),
+      message: val('message'),
+      consentPrivacy: true
+    };
+    ['phone','organization','neighborhood','preferredDate','estimatedAttendance'].forEach(function(k){
+      var v = val(k);
+      if (v) payload[k] = v;
+    });
+
+    btn.disabled = true;
+    var restore = btn.textContent;
+    btn.textContent = 'Sending';
+
+    fetch(ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(payload)
+    }).then(function(res){
+      // The endpoint is not live yet, so a 404 page or an empty body is a real
+      // possibility. Parse defensively and never let a parse error surface raw.
+      return res.text().then(function(text){
+        var data = null;
+        try { data = text ? JSON.parse(text) : null; } catch (err) { data = null; }
+        return { ok: res.ok, data: data };
+      });
+    }).then(function(r){
+      if (r.ok && r.data && r.data.ok) { succeed(r.data.requestId); return; }
+      var msg = r.data && r.data.error ? r.data.error : FALLBACK;
+      showErr('err-form', msg);
+      btn.disabled = false;
+      btn.textContent = restore;
+    }).catch(function(){
+      showErr('err-form', FALLBACK);
+      btn.disabled = false;
+      btn.textContent = restore;
+    });
+  });
 })();
 </script>
 <script>

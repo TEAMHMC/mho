@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mobile Health Outreach | Health Matters Clinic</title>
+<meta name="description" content="Health Matters Clinic brings free screenings, health education, and referrals to parks, schools, and neighborhood events across Los Angeles. 169 community members told us cost, time, and transportation are what stop them from getting care. This is how that shapes where we set up.">
+<link rel="canonical" href="https://mho.healthmatters.clinic/">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Mobile Health Outreach | Health Matters Clinic">
+<meta property="og:description" content="Free health screenings, education, and referrals brought to the places people already go in Los Angeles.">
+<meta property="og:url" content="https://mho.healthmatters.clinic/">
+<meta property="og:image" content="https://mho.healthmatters.clinic/photos/vitals-pop-up.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,700;1,800;1,900&family=Questrial&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./assets/css/hmc-parallax.css">
+<link rel="stylesheet" href="./assets/site/hmc-buttons-1.0.3.css">
+
+<style>
+:root{
+  --hmc-primary:#2333df;
+  --hmc-primary-hover:#1a2ecc;
+  --hmc-secondary:#ff6e40;
+  --hmc-accent:#f9c74f;
+  --hmc-bg:#f5f3ef;
+  --hmc-text:#0a0a0a;
+  --hmc-muted:#2a2540;
+  --hmc-hero:#070707;
+  --hmc-blue:#2333df;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--hmc-bg);color:var(--hmc-text);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+blockquote{margin:0}
+.wrap{max-width:1240px;margin:0 auto;padding:0 clamp(20px,4vw,40px)}
+.measure{max-width:680px}
+h1,h2,h3,.display{font-family:'Questrial','Inter',sans-serif;font-weight:400}
+
+/* ===================== HERO ===================== */
+.hero{position:relative;background:var(--hmc-hero);min-height:100vh;height:100svh;display:flex;align-items:flex-end;overflow:hidden}
+.hero-carousel{position:absolute;inset:0;z-index:0}
+.hero-slide{position:absolute;inset:0;background-color:#0a0a0a;background-size:cover;background-position:center 30%;opacity:0;transform:scale(1.04);transition:opacity 1.4s ease-in-out;filter:saturate(.95) contrast(1.03)}
+.hero-slide.active{opacity:1;animation:heroKenBurns 9s ease-out forwards}
+@keyframes heroKenBurns{from{transform:scale(1.04)}to{transform:scale(1.10)}}
+@media (prefers-reduced-motion:reduce){.hero-slide.active{animation:none;transform:scale(1.04)}}
+.hero-grain{position:absolute;inset:0;z-index:3;opacity:.055;pointer-events:none;background-size:160px;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.hero-scrim{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(7,7,7,.74) 0%,rgba(7,7,7,.28) 38%,rgba(7,7,7,.92) 100%)}
+.hero-glow{position:absolute;left:-10%;bottom:-30%;width:70%;height:80%;z-index:1;pointer-events:none;background:radial-gradient(closest-side,rgba(35,61,255,.42),transparent 70%)}
+.hero-inner{position:relative;z-index:2;width:100%;padding:clamp(48px,9vw,110px) 0 clamp(38px,6vw,72px)}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--hmc-accent);margin:0 0 22px}
+
+.hero-title{color:#fff;font-size:clamp(46px,7.4vw,112px);line-height:.86;letter-spacing:-.02em;max-width:11ch;margin:0 0 26px}
+.hero-title em{font-style:normal;color:var(--hmc-accent)}
+.hero-tagline{color:rgba(255,255,255,.88);font-size:clamp(16px,1.7vw,20px);max-width:56ch;margin:0 0 34px;line-height:1.5}
+.hero-stats{display:flex;flex-wrap:wrap;gap:clamp(24px,5vw,60px);border-top:1px solid rgba(255,255,255,.22);padding-top:26px}
+.hstat b{display:block;font-family:'Questrial',sans-serif;font-size:clamp(28px,3.4vw,42px);color:#fff;line-height:1;font-variant-numeric:tabular-nums}
+.hstat span{display:block;margin-top:7px;font-size:11px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:rgba(255,255,255,.62)}
+.cta-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px}
+
+/* ===================== SECTIONS ===================== */
+section{padding:clamp(56px,8vw,110px) 0}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--hmc-primary);margin:0 0 20px}
+.eyebrow::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--hmc-accent)}
+h2{font-size:clamp(30px,4.6vw,58px);line-height:.98;letter-spacing:-.02em;margin:0 0 22px}
+h3{font-size:1.35rem;line-height:1.15;margin:0 0 10px}
+p{margin:0 0 18px}
+.lede{font-size:clamp(17px,1.9vw,21px);line-height:1.5;color:var(--hmc-muted)}
+.twoup{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:clamp(28px,4vw,56px);align-items:start}
+.note{font-size:.86rem;color:var(--hmc-muted);opacity:.85;max-width:70ch;margin:18px 0 0}
+
+/* ===================== PHOTO BANDS ===================== */
+.block{width:calc(100% - clamp(28px,4vw,56px));margin:0 auto;border-radius:clamp(20px,2.6vw,34px);overflow:hidden}
+.photoband{position:relative;min-height:clamp(300px,46vw,540px);background-size:cover}
+.photoband .cap{position:absolute;left:0;right:0;bottom:0;padding:clamp(34px,5vw,56px) clamp(20px,3vw,34px) clamp(20px,3vw,30px);background:linear-gradient(180deg,transparent,rgba(7,7,7,.84));color:#fff;font-size:14px;font-weight:600}
+.pb-team{background-image:url('./photos/outreach-team-park.jpg');background-position:center 62%}
+
+.carefig{border:1px solid var(--hmc-text);border-radius:26px;overflow:hidden;background:#fff;margin:0}
+.carefig img{width:100%;height:auto;display:block}
+.carefig figcaption{padding:16px 20px;font-size:.88rem;color:var(--hmc-muted);border-top:1px solid var(--hmc-text)}
+
+/* ===================== FINDINGS ===================== */
+.findings{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(14px,1.6vw,20px)}
+.finding{background:#fff;border:1px solid var(--hmc-text);border-radius:22px;padding:26px 24px;display:flex;flex-direction:column;gap:10px}
+.finding .num{font-family:'Questrial',sans-serif;font-size:clamp(38px,4.6vw,54px);line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.finding .count{font-size:11px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--hmc-primary)}
+.finding p{margin:0;font-size:.95rem;color:var(--hmc-muted);line-height:1.5}
+.finding.pop{background:var(--hmc-accent)}
+.finding.pop .count{color:var(--hmc-text)}
+.finding.deep{background:var(--hmc-primary);color:#fff}
+.finding.deep p{color:rgba(255,255,255,.9)}
+.finding.deep .count{color:var(--hmc-accent)}
+
+/* ===================== RANKED ===================== */
+.ranked{background:#fff;border:1px solid var(--hmc-text);border-radius:26px;padding:clamp(22px,3vw,34px)}
+.ranked h3{font-size:1.05rem;margin-bottom:6px}
+.ranked .sub{font-size:.86rem;color:var(--hmc-muted);margin:0 0 14px}
+.row{padding:13px 0;border-bottom:1px solid #e6e2da}
+.row:last-child{border-bottom:0}
+.rowtop{display:flex;justify-content:space-between;align-items:baseline;gap:14px;margin-bottom:9px}
+.rowtop .label{font-size:.97rem;font-weight:600}
+.rowtop .val{font-size:.9rem;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.track{height:12px;border:1px solid var(--hmc-text);border-radius:999px;overflow:hidden;background:#fff}
+.track i{display:block;height:100%;background:var(--hmc-accent);transform-origin:left}
+.row.top3 .track i{background:var(--hmc-primary)}
+
+/* ===================== METHOD ===================== */
+.method{background:var(--hmc-text);color:#fff;border-radius:26px;padding:clamp(24px,3vw,36px)}
+.method h3{color:var(--hmc-accent)}
+.method dl{display:grid;grid-template-columns:auto 1fr;gap:12px 22px;margin:0;font-size:.93rem}
+.method dt{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.55);padding-top:5px;white-space:nowrap}
+.method dd{margin:0;color:rgba(255,255,255,.92)}
+
+/* ===================== SPLIT ===================== */
+.split{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));align-items:stretch;border:1px solid var(--hmc-text);border-radius:28px;overflow:hidden;background:#fff}
+.split .pic{min-height:340px;background-image:url('./photos/vitals-pop-up.png');background-size:cover;background-position:center 45%}
+.split .txt{padding:clamp(26px,3.4vw,44px)}
+
+/* ===================== DARK SECTION ===================== */
+.dark-sec{background:var(--hmc-text);color:#fff}
+.dark-sec h2{color:#fff}
+.dark-sec h2 em{font-style:normal;color:var(--hmc-accent)}
+.dark-sec .lede{color:rgba(255,255,255,.76)}
+.dark-sec .eyebrow{color:var(--hmc-accent)}
+.dark-sec .note{color:rgba(255,255,255,.55)}
+/* White cards inside the dark section must not inherit its white text. */
+.dark-sec .ranked,.dark-sec .ranked h3{color:var(--hmc-text)}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:clamp(20px,2.6vw,32px);margin-top:44px}
+.step{border-top:2px solid var(--hmc-accent);padding-top:18px}
+.step h3{color:#fff}
+.step .figure{font-family:'Questrial',sans-serif;font-size:clamp(30px,3.6vw,44px);line-height:1;color:var(--hmc-accent);display:block;margin-bottom:10px;font-variant-numeric:tabular-nums}
+.step p{font-size:.93rem;color:rgba(255,255,255,.72);margin:0}
+
+/* ===================== GET INVOLVED ===================== */
+.involve{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:clamp(14px,1.6vw,20px);margin-top:40px}
+.icard{background:#fff;border:1px solid var(--hmc-text);border-radius:24px;padding:28px 26px;display:flex;flex-direction:column;gap:12px}
+.icard.pop{background:var(--hmc-accent)}
+.icard .tag{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--hmc-primary)}
+.icard.pop .tag{color:var(--hmc-text)}
+.icard p{font-size:.94rem;color:var(--hmc-muted);margin:0;flex:1}
+.icard.pop p{color:var(--hmc-text)}
+.icard ul{margin:0;padding-left:19px;font-size:.92rem;color:var(--hmc-muted);line-height:1.55}
+.icard li{margin-bottom:5px}
+.slist{background:#fff;border:1px solid var(--hmc-text);border-radius:22px;padding:24px}
+.slist h3{font-size:1.05rem;margin-bottom:12px}
+.slist ul{margin:0;padding-left:19px;font-size:.93rem;color:var(--hmc-muted);line-height:1.6}
+.kit{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:clamp(14px,1.6vw,20px);margin-top:40px}
+.shipbox{background:var(--hmc-primary);color:#fff;border-radius:22px;padding:26px;margin-top:20px}
+.shipbox h3{color:var(--hmc-accent);font-size:1.05rem}
+.shipbox p{color:rgba(255,255,255,.9);font-size:.94rem;margin:0 0 10px}
+.shipbox .addr{font-size:1.02rem;line-height:1.5;color:#fff}
+
+/* ===================== FAQ + FOOTER ===================== */
+.sitefoot{background:var(--hmc-text);color:rgba(255,255,255,.72)}
+.foot-inner{padding:clamp(48px,7vw,88px) 0 0}
+.faq-head{max-width:640px;margin-bottom:36px}
+.faq-title{font-family:'Questrial',sans-serif;font-size:clamp(28px,4vw,44px);color:#fff;margin:0 0 14px;line-height:1}
+.faq-intro{margin:0;font-size:.98rem;color:rgba(255,255,255,.66)}
+.faq-groups{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:clamp(26px,4vw,52px)}
+.faq-group h5{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--hmc-accent);margin:0 0 12px}
+.faq-item{border-top:1px solid rgba(255,255,255,.16)}
+.faq-item:last-child{border-bottom:1px solid rgba(255,255,255,.16)}
+.faq-item summary{cursor:pointer;padding:15px 0;font-size:1rem;font-weight:600;color:#fff;list-style:none;display:flex;justify-content:space-between;gap:16px}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary::after{content:'+';font-size:1.25rem;line-height:1;color:var(--hmc-accent);flex:0 0 auto}
+.faq-item[open] summary::after{content:'\2212'}
+.faq-item summary:focus-visible{outline:2px solid var(--hmc-accent);outline-offset:3px}
+.faq-answer{padding:0 0 16px;font-size:.95rem;line-height:1.6;color:rgba(255,255,255,.72);max-width:60ch}
+.faq-answer p{margin:0 0 12px}
+.faq-answer p:last-child{margin:0}
+.faq-answer a{color:var(--hmc-accent)}
+.foot-brand{display:flex;flex-wrap:wrap;gap:28px;justify-content:space-between;align-items:flex-start;
+  margin-top:clamp(40px,6vw,72px);padding-top:32px;border-top:1px solid rgba(255,255,255,.16)}
+.foot-brand h4{font-family:'Questrial',sans-serif;font-size:1.5rem;color:#fff;margin:0 0 10px}
+.foot-brand p{margin:0;font-size:.92rem;max-width:44ch}
+.foot-cols{display:flex;flex-wrap:wrap;gap:clamp(28px,5vw,64px)}
+.foot-col h6{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5);margin:0 0 12px}
+.foot-col a{display:block;color:rgba(255,255,255,.8);text-decoration:none;font-size:.93rem;margin-bottom:9px}
+.foot-col a:hover{color:var(--hmc-accent)}
+.foot-legal{display:flex;flex-wrap:wrap;gap:10px 22px;justify-content:space-between;
+  padding:26px 0 34px;margin-top:34px;border-top:1px solid rgba(255,255,255,.16);font-size:.85rem}
+.foot-legal a{color:rgba(255,255,255,.66);margin-right:18px}
+
+/* ===================== KINETIC ===================== */
+.kinetic-wrap{padding:clamp(30px,5vw,54px) 0;background:var(--hmc-bg);border-top:1px solid var(--hmc-text);border-bottom:1px solid var(--hmc-text)}
+
+footer{background:var(--hmc-text);color:rgba(255,255,255,.64);padding:44px 0;font-size:.87rem}
+footer a{color:var(--hmc-accent)}
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:20px;top:20px;z-index:99;background:#fff;color:#0a0a0a;padding:12px 18px;border-radius:999px}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- ===================== HERO ===================== -->
+<header class="hero hmc-parallax-hero">
+  <div class="hero-carousel" aria-hidden="true">
+    <!-- Two photographs, four crops. Replace slides 3 and 4 with distinct MHO
+         photography when it is available. See README, Photos still needed. -->
+    <div class="hero-slide active" style="background-image:url('./photos/outreach-team-park.jpg');background-position:center 58%"></div>
+    <div class="hero-slide" style="background-image:url('./photos/vitals-pop-up.png');background-position:center 40%"></div>
+    <div class="hero-slide" style="background-image:url('./photos/outreach-team-park.jpg');background-position:center 30%"></div>
+    <div class="hero-slide" style="background-image:url('./photos/vitals-pop-up.png');background-position:70% 55%"></div>
+  </div>
+  <div class="hero-scrim" aria-hidden="true"></div>
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="hero-grain" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <div class="wrap">
+      <p class="hero-eyebrow">Mobile Health Outreach</p>
+      <h1 class="hero-title">The clinic <em>comes to you.</em></h1>
+      <p class="hero-tagline">Free screenings, health education, and referrals set up in parks, at schools, and at neighborhood events across Los Angeles. We asked 169 community members what keeps them from care, and we built the deployment around what they said.</p>
+      <div class="hero-stats">
+        <div class="hstat"><b class="impact-num">169</b><span>People gave us feedback</span></div>
+        <div class="hstat"><b class="impact-num">87</b><span>Named cost as a barrier</span></div>
+        <div class="hstat"><b class="impact-num">133</b><span>Want updates from us</span></div>
+      </div>
+      <div class="cta-row">
+        <a data-hmc-label="What people told us" class="hmc-btn hmc-btn-primary" href="#feedback">What people told us</a>
+        <a data-hmc-label="Find an event near you" class="hmc-btn hmc-btn-secondary" href="https://eventfinder.healthmatters.clinic">Find an event near you</a>
+        <a data-hmc-label="Volunteer with us" class="hmc-btn hmc-btn-secondary" href="#join">Volunteer with us</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ===================== PREMISE ===================== -->
+<section>
+  <div class="wrap">
+    <div class="twoup">
+      <div data-reveal>
+        <p class="eyebrow">Why we ask</p>
+        <h2>Free is not the same as reachable.</h2>
+        <p class="lede">A service can cost nothing and still be out of reach if it sits across town, on a weekday, at an hour someone is working. So we stopped guessing and asked.</p>
+        <p>169 community members completed our community needs and engagement assessment, offered in English and Spanish. It is community feedback, collected so we can plan our own services. The counts below are exact. Percentages are calculated on the people who answered each question, because any question could be skipped.</p>
+        <p>Everything on this page traces back to those answers. Where a number would require us to guess, we left it out.</p>
+      </div>
+      <figure class="carefig" data-reveal>
+        <img src="./photos/vitals-pop-up.png" alt="Health Matters Clinic team member fitting a blood pressure cuff on a seated community member at an outdoor pop-up table under a canopy" loading="lazy" width="1024" height="595">
+        <figcaption>Blood pressure taken at a neighborhood pop-up. No appointment, no insurance, no identification required.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== BARRIERS ===================== -->
+<section id="feedback" style="padding-top:0">
+  <div class="wrap">
+    <div class="measure" data-reveal>
+      <p class="eyebrow">What the community told us</p>
+      <h2>Cost, time, and a ride.</h2>
+      <p class="lede">Three barriers came back ahead of everything else. Mobile Health Outreach exists because all three are answerable by where and how a service is delivered, not by explaining the service better.</p>
+    </div>
+    <div class="findings" style="margin-top:38px">
+      <div class="finding deep" data-reveal>
+        <span class="num"><span class="impact-num">56</span>.1%</span>
+        <span class="count">87 people</span>
+        <p>Named cost as a barrier to getting care. Every Mobile Health Outreach deployment is free at the point of service.</p>
+      </div>
+      <div class="finding pop" data-reveal>
+        <span class="num"><span class="impact-num">38</span>.7%</span>
+        <span class="count">60 people</span>
+        <p>Named time. We set up at hours and events people are already attending, rather than asking them to find a new block of a working day.</p>
+      </div>
+      <div class="finding" data-reveal>
+        <span class="num"><span class="impact-num">38</span>.1%</span>
+        <span class="count">59 people</span>
+        <p>Named transportation. This is the barrier a mobile team removes outright, by covering the distance instead of asking someone else to.</p>
+      </div>
+      <div class="finding" data-reveal>
+        <span class="num"><span class="impact-num">68</span>.4%</span>
+        <span class="count">104 people</span>
+        <p>Said the support they most need is information about free or low-cost services. The single largest request was not treatment. It was knowing what already exists.</p>
+      </div>
+      <div class="finding pop" data-reveal>
+        <span class="num"><span class="impact-num">56</span>.6%</span>
+        <span class="count">86 people</span>
+        <p>Asked for help understanding how to access services. Knowing a program exists and being able to use it are two different problems, and people named both.</p>
+      </div>
+    </div>
+    <p class="note">Counts are the number of people who selected each option out of 169 total respondents. People could select more than one answer, and any question could be skipped, so percentages are of those answering that question and do not total 100.</p>
+  </div>
+</section>
+
+<div class="block photoband pb-team">
+  <p class="cap">Outreach team on site at a park deployment in Los Angeles. Clinical staff, students, and volunteers set up together.</p>
+</div>
+
+<!-- ===================== WHAT DRAWS PEOPLE ===================== -->
+<section>
+  <div class="wrap">
+    <div class="twoup">
+      <div data-reveal>
+        <p class="eyebrow">How that shapes deployment</p>
+        <h2>People come for the giveaway table.</h2>
+        <p class="lede">Free items, food, and something for the children outranked free health screenings in why people showed up. We would rather work with that than pretend otherwise.</p>
+        <p>Read it as operating instructions. A health event without giveaways, without food, and without anything for a child to do reaches fewer people, which means fewer blood pressure readings taken and fewer referrals made. The screening tent is not competing with the giveaway table. It is standing next to it, which is the only reason it gets busy.</p>
+        <p>It also explains the shape of a deployment. Families arrive together, so a parent will only sit down for a screening if their children are occupied within sight. Staffing the family activity is a clinical decision, not a nice extra.</p>
+      </div>
+      <div class="ranked" data-reveal>
+        <h3>Why people attended a community event</h3>
+        <p class="sub">169 respondents, more than one answer allowed.</p>
+        <div class="row top3"><div class="rowtop"><span class="label">Free items or giveaways</span><span class="val">129 &middot; 77.7%</span></div><div class="track"><i style="width:77.7%"></i></div></div>
+        <div class="row top3"><div class="rowtop"><span class="label">Food or meals</span><span class="val">90 &middot; 54.2%</span></div><div class="track"><i style="width:54.2%"></i></div></div>
+        <div class="row top3"><div class="rowtop"><span class="label">Activities for children or families</span><span class="val">89 &middot; 53.6%</span></div><div class="track"><i style="width:53.6%"></i></div></div>
+        <div class="row"><div class="rowtop"><span class="label">Free health screenings</span><span class="val">79 &middot; 47.6%</span></div><div class="track"><i style="width:47.6%"></i></div></div>
+        <div class="row"><div class="rowtop"><span class="label">Community resources or referrals</span><span class="val">73 &middot; 44.0%</span></div><div class="track"><i style="width:44.0%"></i></div></div>
+      </div>
+    </div>
+
+    <div class="twoup" style="margin-top:clamp(28px,4vw,56px)">
+      <div class="ranked" data-reveal>
+        <h3>What would make someone attend the next one</h3>
+        <p class="sub">Asked separately from why people attended before.</p>
+        <div class="row top3"><div class="rowtop"><span class="label">Free items</span><span class="val">91 &middot; 59.1%</span></div><div class="track"><i style="width:59.1%"></i></div></div>
+        <div class="row top3"><div class="rowtop"><span class="label">Child or family friendly activities</span><span class="val">89 &middot; 57.8%</span></div><div class="track"><i style="width:57.8%"></i></div></div>
+        <div class="row top3"><div class="rowtop"><span class="label">Food provided</span><span class="val">84 &middot; 54.6%</span></div><div class="track"><i style="width:54.6%"></i></div></div>
+      </div>
+      <div class="method" data-reveal>
+        <h3>How the feedback was collected</h3>
+        <dl>
+          <dt>Respondents</dt><dd>169</dd>
+          <dt>Languages</dt><dd>English and Spanish</dd>
+          <dt>Format</dt><dd>Multiple choice, more than one answer allowed on most questions</dd>
+          <dt>Skipping</dt><dd>Any question could be skipped, so the number answering varies by question</dd>
+          <dt>Reporting</dt><dd>Counts are exact. Percentages are of those answering that question</dd>
+          <dt>Purpose</dt><dd>Program planning for Health Matters Clinic. Community feedback, not published science</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== WHAT A DEPLOYMENT INCLUDES ===================== -->
+<section style="padding-top:0" id="deployment">
+  <div class="wrap">
+    <div class="split" data-reveal>
+      <div class="pic" role="img" aria-label="Blood pressure screening in progress at an outdoor Health Matters Clinic pop-up"></div>
+      <div class="txt">
+        <p class="eyebrow">What a deployment includes</p>
+        <h2 style="font-size:clamp(26px,3.4vw,42px)">What we set up when we arrive.</h2>
+        <p>A screening station, a health education table, and someone whose whole job is helping people work out what to do next. Everything is free, and no insurance or identification is required to sit down.</p>
+        <p style="margin-bottom:0">Screening finds the problem. Navigation is how it gets treated. Running one without the other is how people end up holding a number they do not know what to do with.</p>
+      </div>
+    </div>
+
+    <div class="kit">
+      <div class="slist" data-reveal>
+        <h3>Vitals and screening</h3>
+        <ul>
+          <li>Blood pressure</li>
+          <li>Blood glucose</li>
+          <li>Cholesterol</li>
+          <li>Oxygen saturation</li>
+        </ul>
+      </div>
+      <div class="slist" data-reveal>
+        <h3>Health education</h3>
+        <ul>
+          <li>What your readings mean, explained on the spot</li>
+          <li>Materials in English and Spanish</li>
+          <li>Mental health and wellness information</li>
+          <li>Questions answered without an appointment</li>
+        </ul>
+      </div>
+      <div class="slist" data-reveal>
+        <h3>Referrals and navigation</h3>
+        <ul>
+          <li>Connection to free and low-cost services</li>
+          <li>Help understanding how to access them, the second most requested support</li>
+          <li>Referral into HMC programs and partner services</li>
+          <li>Follow-up information to take home</li>
+        </ul>
+      </div>
+    </div>
+    <p class="note">A deployment is a screening and navigation service, not a replacement for a primary care relationship. When a reading needs a clinician, the point of the visit is getting you to one.</p>
+  </div>
+</section>
+
+<!-- ===================== KINETIC MARQUEE ===================== -->
+<div class="kinetic-wrap hmc-kinetic" aria-hidden="true">
+  <div class="hmc-kinetic-row">
+    <span>Mobile Health</span><span class="o">Los Angeles</span><span class="accent">Always free</span><span>Mobile Health</span><span class="o">Los Angeles</span><span class="accent">Always free</span>
+  </div>
+</div>
+
+<!-- ===================== DIGITAL ===================== -->
+<section class="dark-sec" id="reach">
+  <div class="wrap">
+    <div class="measure" data-reveal>
+      <p class="eyebrow">How people want to hear from us</p>
+      <h2>A phone in a hand, and <em>someone standing in front of you.</em></h2>
+      <p class="lede">Phone or text was the most common way people wanted to receive information, followed by hearing it in person at an event. Almost everyone said they would use a digital tool to find free services, and the great majority want us to keep them updated.</p>
+    </div>
+    <div class="steps">
+      <div class="step" data-reveal>
+        <span class="figure">61</span>
+        <h3>Prefer phone or text</h3>
+        <p>37.9% chose phone or text as how they want to get information, ahead of every other channel.</p>
+      </div>
+      <div class="step" data-reveal>
+        <span class="figure">51</span>
+        <h3>Prefer in person</h3>
+        <p>31.7% want to hear it at the event itself, which is one more reason the education table is staffed.</p>
+      </div>
+      <div class="step" data-reveal>
+        <span class="figure">114</span>
+        <h3>Very likely to use a digital tool</h3>
+        <p>75.5% said very likely and a further 29 people, 19.2%, said somewhat likely.</p>
+      </div>
+      <div class="step" data-reveal>
+        <span class="figure">133</span>
+        <h3>Want updates from us</h3>
+        <p>84.7% said yes to receiving digital updates about services and events.</p>
+      </div>
+    </div>
+
+    <div class="twoup" style="margin-top:clamp(34px,5vw,64px)">
+      <div data-reveal>
+        <h2 style="font-size:clamp(24px,3vw,38px)">What the 61 asked us to send.</h2>
+        <p style="color:rgba(255,255,255,.76)">Among the people who preferred phone or text, the requests line up with the barriers. They are not asking for a newsletter. They are asking for the name of something free and the steps to use it.</p>
+        <p style="color:rgba(255,255,255,.76)">That is what the Event Finder is for: every HMC event, searchable without an account, on a phone, so that knowing where to go stops being the hard part.</p>
+        <div class="cta-row">
+          <a data-hmc-label="Open the Event Finder" class="hmc-btn hmc-btn-primary" href="https://eventfinder.healthmatters.clinic">Open the Event Finder</a>
+        </div>
+      </div>
+      <div class="ranked" data-reveal>
+        <h3>Requested by those preferring phone or text</h3>
+        <p class="sub">Counts among the 61 people who chose phone or text. More than one answer allowed.</p>
+        <div class="row top3"><div class="rowtop"><span class="label">Free or low-cost services</span><span class="val">32 of 61</span></div><div class="track"><i style="width:52.5%"></i></div></div>
+        <div class="row top3"><div class="rowtop"><span class="label">Help accessing care</span><span class="val">30 of 61</span></div><div class="track"><i style="width:49.2%"></i></div></div>
+        <div class="row top3"><div class="rowtop"><span class="label">Health education</span><span class="val">19 of 61</span></div><div class="track"><i style="width:31.1%"></i></div></div>
+        <div class="row"><div class="rowtop"><span class="label">Programs for children and youth</span><span class="val">17 of 61</span></div><div class="track"><i style="width:27.9%"></i></div></div>
+        <div class="row"><div class="rowtop"><span class="label">Ongoing updates</span><span class="val">10 of 61</span></div><div class="track"><i style="width:16.4%"></i></div></div>
+        <div class="row"><div class="rowtop"><span class="label">Mental health resources</span><span class="val">8 of 61</span></div><div class="track"><i style="width:13.1%"></i></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== GET INVOLVED ===================== -->
+<section id="join">
+  <div class="wrap">
+    <div class="measure" data-reveal>
+      <p class="eyebrow">Join the work</p>
+      <h2>The teams are volunteers.</h2>
+      <p class="lede">A deployment needs people at the screening station, at the education table, at the sign-in table, and with the families. Clinical and non-clinical roles both matter, and both are trained before anyone works an event.</p>
+    </div>
+    <div class="involve">
+      <div class="icard" data-reveal>
+        <span class="tag">Train and deploy</span>
+        <h3>Become a volunteer</h3>
+        <p>Every HMC volunteer completes Community Mental Health Worker training, parts one and two, before working with the community. Training and hours are tracked in your volunteer record.</p>
+        <ul>
+          <li>Screening support alongside clinical staff</li>
+          <li>Health education and navigation roles</li>
+          <li>Recurring deployments, not one-off shifts</li>
+        </ul>
+        <div><a class="hmc-btn hmc-btn-primary" data-hmc-label="Start volunteer training" href="https://volunteer.healthmatters.clinic">Start volunteer training</a></div>
+      </div>
+      <div class="icard pop" data-reveal>
+        <span class="tag">Look first</span>
+        <h3>Take the tour</h3>
+        <p>New to HMC and not ready to sign up? The tour walks you through how volunteering works, what the training covers, and what a shift actually asks of you, before you commit to anything.</p>
+        <div><a class="hmc-btn hmc-btn-secondary" data-hmc-label="Take the tour" href="https://volunteer.healthmatters.clinic/tour">Take the tour</a></div>
+      </div>
+      <div class="icard" data-reveal>
+        <span class="tag">Fund the deployment</span>
+        <h3>Donate</h3>
+        <p>Screening supplies, education materials in two languages, and the food and family activities that fill the site are what a donation pays for. The feedback is clear that the last part is not decoration. It is what gets people through the gate.</p>
+        <div><a class="hmc-btn hmc-btn-primary" data-hmc-label="Donate" href="https://www.healthmatters.clinic/donate">Donate</a></div>
+      </div>
+      <div class="icard" data-reveal>
+        <span class="tag">Host a deployment</span>
+        <h3>Bring us to your site</h3>
+        <p>Schools, churches, housing sites, and community organizations can request a Mobile Health Outreach deployment. Tell us the neighborhood, the date, and roughly how many people you expect, and we will tell you what we can bring.</p>
+        <div><a class="hmc-btn hmc-btn-secondary" data-hmc-label="Request a deployment" href="mailto:contact@healthmatters.clinic?subject=Mobile%20Health%20Outreach%20deployment%20request">Request a deployment</a></div>
+      </div>
+    </div>
+
+    <div class="shipbox" data-reveal>
+      <h3>Where to reach the team</h3>
+      <p>Questions about volunteering, hosting a deployment, or supporting a site come to the same place.</p>
+      <p class="addr">Health Matters Clinic<br>
+      Attention: Mobile Health Outreach<br>
+      1360 S Figueroa St, Suite D390<br>
+      Los Angeles, CA 90015</p>
+      <p style="margin-top:12px"><a href="mailto:contact@healthmatters.clinic" style="color:var(--hmc-accent)">contact@healthmatters.clinic</a> &middot; <a href="tel:+13239904325" style="color:var(--hmc-accent)">(323) 990-4325</a></p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="sitefoot">
+  <div class="wrap foot-inner">
+
+    <div class="faq-head">
+      <h3 class="faq-title">Questions</h3>
+      <p class="faq-intro">The things people ask most often before they attend, volunteer, or invite us to a site.</p>
+    </div>
+
+    <div class="faq-groups">
+      <div class="faq-group">
+        <h5>The program</h5>
+        <details class="faq-item"><summary>What is Mobile Health Outreach?</summary><div class="faq-answer">
+          <p>A Health Matters Clinic team that sets up free health screening, health education, and referral services at community events, parks, schools, and neighborhood sites across Los Angeles.</p>
+          <p>It exists because the barriers people named, cost, time, and transportation, are all answered by bringing the service to where people already are.</p>
+        </div></details>
+        <details class="faq-item"><summary>What happens at a deployment?</summary><div class="faq-answer">
+          <p>Vitals and screening: blood pressure, blood glucose, cholesterol, and oxygen saturation. Health education, with materials in English and Spanish. Referrals and navigation, meaning help working out which free or low-cost service fits and how to actually use it.</p>
+        </div></details>
+        <details class="faq-item"><summary>Is it really free?</summary><div class="faq-answer">
+          <p>Yes. Every community-facing HMC service is free, with no insurance, referral, or identification required.</p>
+        </div></details>
+        <details class="faq-item"><summary>Where will you be next?</summary><div class="faq-answer">
+          <p>Upcoming events are listed in the <a href="https://eventfinder.healthmatters.clinic">Event Finder</a>, which is searchable without an account and works on a phone.</p>
+        </div></details>
+        <details class="faq-item"><summary>Can you come to our site?</summary><div class="faq-answer">
+          <p>Often, yes. Schools, churches, housing sites, and community organizations can request a deployment by emailing <a href="mailto:contact@healthmatters.clinic">contact@healthmatters.clinic</a> with the neighborhood, the date, and an estimate of how many people you expect.</p>
+        </div></details>
+      </div>
+
+      <div class="faq-group">
+        <h5>Volunteering</h5>
+        <details class="faq-item"><summary>Do I need to be a clinician?</summary><div class="faq-answer">
+          <p>No. Teams include nursing, medical, public health, and social work students alongside licensed staff, and non-clinical volunteers who handle sign-in, education materials, navigation, and family activities.</p>
+          <p>Clinical tasks are performed only by people licensed to perform them.</p>
+        </div></details>
+        <details class="faq-item"><summary>What training is required?</summary><div class="faq-answer">
+          <p>Every HMC volunteer completes Community Mental Health Worker training, parts one and two. It covers the clinical side, including taking and recording vitals, and the behavioural side, including de-escalation and trauma-informed engagement, because most of what happens at a table is a conversation before it is a procedure.</p>
+          <p>New to HMC? <a href="https://volunteer.healthmatters.clinic/tour">Take the tour</a> first, then start at <a href="https://volunteer.healthmatters.clinic">volunteer.healthmatters.clinic</a>.</p>
+        </div></details>
+        <details class="faq-item"><summary>Can I do this for school credit or clinical hours?</summary><div class="faq-answer">
+          <p>Volunteer hours are tracked in your HMC record. Whether they count toward a specific program requirement is your school's decision, so check with your program first and we will provide documentation of hours served.</p>
+        </div></details>
+      </div>
+
+      <div class="faq-group">
+        <h5>The community feedback</h5>
+        <details class="faq-item"><summary>Where do the numbers on this page come from?</summary><div class="faq-answer">
+          <p>A community needs and engagement assessment completed by 169 community members, offered in English and Spanish. We collected it to plan our own services.</p>
+          <p>It is community feedback, not published science, and it should not be cited as such.</p>
+        </div></details>
+        <details class="faq-item"><summary>Why do the percentages not add up to 100?</summary><div class="faq-answer">
+          <p>Most questions allowed more than one answer, and any question could be skipped. Percentages are calculated on the people who answered that particular question, which is why the count matters more than the percentage and why we show both.</p>
+        </div></details>
+        <details class="faq-item"><summary>Was any personal information collected?</summary><div class="faq-answer">
+          <p>Responses are used to plan Health Matters Clinic services. No individual answer is published anywhere on this page. Everything shown here is a total count or a percentage.</p>
+        </div></details>
+      </div>
+    </div>
+
+    <div class="foot-brand">
+      <div>
+        <h4>Health Matters Clinic</h4>
+        <p>A 501(c)(3) nonprofit providing free mental health and wellness programs, events, and resources to communities across Los Angeles.</p>
+      </div>
+      <div class="foot-cols">
+        <div class="foot-col">
+          <h6>Get involved</h6>
+          <a href="#join">Volunteer</a>
+          <a href="https://www.healthmatters.clinic/donate">Donate</a>
+          <a href="mailto:contact@healthmatters.clinic?subject=Mobile%20Health%20Outreach%20deployment%20request">Request a deployment</a>
+          <a href="https://partner.healthmatters.clinic">Partner portal</a>
+        </div>
+        <div class="foot-col">
+          <h6>HMC</h6>
+          <a href="https://www.healthmatters.clinic">Main site</a>
+          <a href="https://www.healthmatters.clinic/programs">Programs</a>
+          <a href="https://eventfinder.healthmatters.clinic">Event Finder</a>
+          <a href="https://directory.healthmatters.clinic">Resource directory</a>
+        </div>
+        <div class="foot-col">
+          <h6>Contact</h6>
+          <a href="mailto:contact@healthmatters.clinic">contact@healthmatters.clinic</a>
+          <a href="tel:+13239904325">(323) 990-4325</a>
+          <a href="https://www.healthmatters.clinic/contact-us">Contact form</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="foot-legal">
+      <div>&copy; 2026 Health Matters Clinic. All rights reserved. 501(c)(3) Nonprofit.<br>1360 S Figueroa St, Suite D390, Los Angeles, CA 90015. EIN 85-3784250.</div>
+      <div>
+        <a href="https://www.healthmatters.clinic/privacy-policy">Privacy</a>
+        <a href="https://www.healthmatters.clinic/terms">Terms</a>
+        <a href="https://www.healthmatters.clinic/cookies">Cookies</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="./assets/js/vendor/gsap.min.js"></script>
+<script src="./assets/js/vendor/ScrollTrigger.min.js"></script>
+<script src="./assets/js/vendor/lenis.min.js"></script>
+<script src="./assets/js/hmc-immersive.js"></script>
+<script src="./assets/site/hmc-buttons-1.0.3.js"></script>
+<script>
+/* Ranked bars draw in on scroll. Uses IntersectionObserver so it works whether or
+   not the GSAP immersive layer is active (it is disabled inside the Webflow iframe
+   and under prefers-reduced-motion). */
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var bars = document.querySelectorAll('.track i');
+  if (reduce || !('IntersectionObserver' in window)) return;
+  bars.forEach(function(b){ b.style.transform='scaleX(0)'; b.style.transition='transform 1s cubic-bezier(.2,.7,.3,1)'; });
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(!e.isIntersecting) return;
+      e.target.style.transform='scaleX(1)';
+      io.unobserve(e.target);
+    });
+  },{threshold:.35});
+  bars.forEach(function(b){ io.observe(b); });
+})();
+</script>
+<script>
+/* Hero carousel. Same structure and 5500ms cadence as SMO and Unstoppable. */
+(function(){
+  var slides = document.querySelectorAll('.hero-slide');
+  if (slides.length < 2) return;
+  var i = 0;
+  function start(){
+    setInterval(function(){
+      slides[i].classList.remove('active');
+      i = (i + 1) % slides.length;
+      slides[i].classList.add('active');
+    }, 5500);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);
+  else start();
+})();
+</script>
+</body>
+</html>

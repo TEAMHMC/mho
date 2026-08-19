@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,700;1,800;1,900&family=Questrial&family=Lato:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./assets/css/hmc-parallax.css">
-<link rel="stylesheet" href="./assets/site/hmc-buttons-1.0.4.css">
+<link rel="stylesheet" href="./assets/site/hmc-buttons-1.0.5.css">
 
 <style>
 :root{
@@ -309,9 +309,9 @@ footer a{color:var(--hmc-accent)}
       <h1 class="hero-title">The clinic <em>comes to you.</em></h1>
       <p class="hero-tagline">Free screenings, health education, and referrals set up in parks, at schools, and at neighborhood events across Los Angeles. We asked 169 community members what keeps them from care, and we built the deployment around what they said.</p>
       <div class="cta-row">
-        <a data-hmc-label="What people told us" class="hmc-btn hmc-btn-primary" href="#feedback">What people told us</a>
-        <a data-hmc-label="Find an event" class="hmc-btn hmc-btn-secondary" href="https://eventfinder.healthmatters.clinic">Find an event</a>
-        <a data-hmc-label="Volunteer" class="hmc-btn hmc-btn-secondary" href="#join">Volunteer</a>
+        <a class="hmc-btn hmc-btn-primary" href="#feedback">What people told us</a>
+        <a class="hmc-btn hmc-btn-secondary" href="https://eventfinder.healthmatters.clinic">Find an event</a>
+        <a class="hmc-btn hmc-btn-secondary" href="#join">Volunteer</a>
       </div>
     </div>
   </div>
@@ -365,8 +365,8 @@ footer a{color:var(--hmc-accent)}
       <p>The 169 responses below came out of step two. Every deployment starts there, with what the people at that site said they needed.</p>
       <p>Want us in your neighborhood? Take the Community Health Survey. If you are a neighborhood group or a partner organization, ask us to come out.</p>
       <div class="cta-row">
-        <a class="hmc-btn hmc-btn-primary" data-hmc-label="Take the survey for your neighborhood" href="https://www.healthmatters.clinic/survey">Take the survey for your neighborhood</a>
-        <a class="hmc-btn hmc-btn-secondary" data-hmc-label="Ask us to come out" href="#request">Ask us to come out</a>
+        <a class="hmc-btn hmc-btn-primary" href="https://www.healthmatters.clinic/survey">Take the survey for your neighborhood</a>
+        <a class="hmc-btn hmc-btn-secondary" href="#request">Ask us to come out</a>
       </div>
     </div>
     <!-- Sits here rather than in a full-bleed band: a band crops to fill, which cut
@@ -596,7 +596,7 @@ footer a{color:var(--hmc-accent)}
         <p style="color:rgba(255,255,255,.76)">The people who chose phone or text are not asking for a newsletter. They are asking for the name of something free and the steps to use it.</p>
         <p style="color:rgba(255,255,255,.76)">The Event Finder does that. Every HMC event, searchable on a phone, no account needed.</p>
         <div class="cta-row">
-          <a data-hmc-label="Open the Event Finder" class="hmc-btn hmc-btn-primary" href="https://eventfinder.healthmatters.clinic">Open the Event Finder</a>
+          <a class="hmc-btn hmc-btn-primary" href="https://eventfinder.healthmatters.clinic">Open the Event Finder</a>
         </div>
       </div>
       <div class="ranked" data-reveal>
@@ -720,25 +720,25 @@ footer a{color:var(--hmc-accent)}
           <li>Health education and navigation roles</li>
           <li>Recurring deployments, not one-off shifts</li>
         </ul>
-        <div><a class="hmc-btn hmc-btn-primary" data-hmc-label="Get started" href="https://volunteer.healthmatters.clinic">Get started</a></div>
+        <div><a class="hmc-btn hmc-btn-primary" href="https://volunteer.healthmatters.clinic">Get started</a></div>
       </div>
       <div class="icard pop" data-reveal>
         <span class="tag">Look first</span>
         <h3>Take the tour</h3>
         <p>New to HMC and not ready to sign up? The tour walks you through how volunteering works, what the training covers, and what a shift actually asks of you, before you commit to anything.</p>
-        <div><a class="hmc-btn hmc-btn-secondary" data-hmc-label="Take the tour" href="https://volunteer.healthmatters.clinic/tour">Take the tour</a></div>
+        <div><a class="hmc-btn hmc-btn-secondary" href="https://volunteer.healthmatters.clinic/tour">Take the tour</a></div>
       </div>
       <div class="icard" data-reveal>
         <span class="tag">Fund the deployment</span>
         <h3>Donate</h3>
         <p>A donation pays for screening supplies, education materials in two languages, and the food and family activities that fill a site. That last part is not decoration. It is what gets people through the gate.</p>
-        <div><a class="hmc-btn hmc-btn-primary" data-hmc-label="Donate" href="https://www.healthmatters.clinic/donate">Donate</a></div>
+        <div><a class="hmc-btn hmc-btn-primary" href="https://www.healthmatters.clinic/donate">Donate</a></div>
       </div>
       <div class="icard" data-reveal>
         <span class="tag">Host a deployment</span>
         <h3>Bring us to your site</h3>
         <p>Schools, churches, housing sites, and community organizations can request a Mobile Health Outreach deployment, ask us to table at an event you are already running, or start a wider partnership. Tell us the neighborhood, the date, and roughly how many people you expect, and we will tell you what we can bring.</p>
-        <div><a class="hmc-btn hmc-btn-secondary" data-hmc-label="Send a request" href="#request">Send a request</a></div>
+        <div><a class="hmc-btn hmc-btn-secondary" href="#request">Send a request</a></div>
       </div>
     </div>
 
@@ -813,7 +813,7 @@ footer a{color:var(--hmc-accent)}
         <p class="err" id="err-consent" role="alert" hidden></p>
 
         <div class="reqfoot">
-          <button type="submit" class="hmc-btn hmc-btn-secondary" data-hmc-label="Send request">Send request</button>
+          <button type="submit" class="hmc-btn hmc-btn-secondary">Send request</button>
           <p class="err" id="err-form" role="alert" hidden style="margin:0"></p>
         </div>
       </form>
@@ -933,7 +933,7 @@ footer a{color:var(--hmc-accent)}
 <script src="./assets/js/vendor/ScrollTrigger.min.js"></script>
 <script src="./assets/js/vendor/lenis.min.js"></script>
 <script src="./assets/js/hmc-immersive.js"></script>
-<script src="./assets/site/hmc-buttons-1.0.4.js"></script>
+<script src="./assets/site/hmc-buttons-1.0.5.js"></script>
 <script>
 /* Ranked bars draw in on scroll. Uses IntersectionObserver so it works whether or
    not the GSAP immersive layer is active (it is disabled inside the Webflow iframe
